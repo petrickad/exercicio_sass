@@ -1,0 +1,95 @@
+@use 'config/reset';
+@use 'config/variaveis';
+
+@mixin formButton{
+    display: block;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+@mixin formProducts($margin: 40px){
+        margin-top: $margin;
+        display: grid;
+        grid-template-columns: repeat(3, 32.66%);
+        column-gap: 1%;
+        row-gap: 4%;
+        width: 100%;
+}
+body{
+    background-color: variaveis.$corPrincipal;
+}
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+li{
+    list-style: none;
+}
+header {
+    background-color: variaveis.$corSecundaria;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+
+        .menu {
+            display: flex;
+
+            li{
+                font-weight: bold;
+                margin-left: 24px;
+
+                a{
+                    color: #fff;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+section {
+    padding: 56px 0;
+
+    .products {
+        @include formProducts;
+        @media screen and (max-width: variaveis.$mobile) {
+            display: block;
+        }
+        @media screen and (max-width: variaveis.$tablet) {
+            grid-template-columns: repeat(2, 48.5%);
+            column-gap: 3%;
+        }
+        .product-item img {
+            width: 100%;
+            border-radius: 16px;
+        }
+        .product-button {
+            @include formButton;
+            background-color: variaveis.$corBotao;
+            color: #fff;
+
+            &:hover{
+                background-color: lighten(variaveis.$corBotao, 8%);
+            }
+        }
+    }
+}
+@media screen and (max-width: variaveis.$mobile) {
+    .product-item  {
+        margin-bottom: 32px;
+    }
+}
+@media screen and (max-width: variaveis.$tablet) {
+    .container {
+        max-width: 80%;
+    }
+}
